@@ -52,6 +52,7 @@ int debugprintf(const char* fmt, ...)
     int rv = vsnprintf(str + headerlen, (ARRAYSIZE(str) - 1) - headerlen, fmt, args);
     va_end(args);
 
+    str[sizeof(str) - 1] = '\0';
     OutputDebugStringA(str);
     return rv;
 }
@@ -98,7 +99,8 @@ int logprintf_internal(LogCategoryFlag cat, const char* fmt, ...)
     int rv = vsnprintf(str + headerlen, (ARRAYSIZE(str) - 1) - headerlen, fmt, args);
     va_end(args);
 
-    OutputDebugStringA(str);
+    str[sizeof(str) - 1] = '\0';
+	OutputDebugStringA(str);
     return rv;
 }
 #endif
