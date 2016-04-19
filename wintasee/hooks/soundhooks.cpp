@@ -344,8 +344,8 @@ public:
 		debuglog(LCF_DSOUND, __FUNCTION__ "(0x%X)(dwOffset=%d, dwBytes=%d, dwFlags=0x%X) called.\n", this,dwOffset,dwBytes,dwFlags);
 		if(!buffer || !bufferSize)
 			return DSERR_INVALIDCALL;
-		EnterCriticalSection(&m_bufferCS);
 		EnterCriticalSection(&m_lockBufferCS);
+		EnterCriticalSection(&m_bufferCS);
 
 		if(!lockBuf)
 			lockBuf = (unsigned char*)realloc(lockBuf, bufferSize);
